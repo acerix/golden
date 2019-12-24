@@ -2,9 +2,7 @@
 
 from random import random
 
-#from scipy.constants import golden
-#iphi = 1/golden
-iphi = (1 - 5 ** .5) * -.5
+phi = (1 - 5 ** .5) * -.5
 
 def golden_point_generator(N):
   points = [x[:] for x in [[None] * 2] * N]
@@ -23,7 +21,7 @@ def golden_point_generator(N):
       idx = i
 
     # increment the coordinate
-    x += iphi
+    x += phi
 
     if x >= 1:
       x -= 1
@@ -58,7 +56,7 @@ def golden_point_generator(N):
     points[i][1] = y
 
     # increment the coordinate
-    y += iphi
+    y += phi
 
     if y >= 1:
       y -= 1
@@ -66,22 +64,15 @@ def golden_point_generator(N):
   return points
 
 if __name__ == '__main__':
-  import sys
-  from pprint import pprint
 
+  import sys
   N = int(sys.argv[1]) if len(sys.argv) > 1 else 6
 
   points = golden_point_generator(N)
 
+  from pprint import pprint
   pprint(points)
-
 
   import matplotlib.pyplot as plt
   plt.scatter(*zip(*points))
   plt.show()
-  #import numpy as np
-  #import matplotlib.pyplot as plt
-  #plt.imshow(points)
-  #plt.colorbar()
-  #plt.show()
-
